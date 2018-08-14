@@ -6,3 +6,7 @@ Use neural network, based on user or CNN generated data, to determine whether on
 * atm.py is 1D cellular automata with r = 2, k = 2.
 * User_data_collection.py use atm.py to make it easy for users to generate preference data.
 * CNN_Generator.py uses convolutional neural network to judge whether a CA picture satisfies user-induced standard. This now serves to provide data for ANN_Judge, because now it cannot understand the relation between a CA seed (in my case a 31-digit binary number) and features of its graph.
+
+## Others
+
+* Data_V1 is 200 training data and 30 testing data originally used to see the validity of ANN_Judge. It seems the data quantity is not enough. So I introduced CNN.

@@ -1,15 +1,28 @@
 #-*- coding:utf-8 -*-
+'''
+This edition of automata is supposed to be more OOP.
+Setup, reset, run, and attributes more clearly defined.
+in run a printable c is generated, but no printing conducted.
+print is another function
+The aim is to get rid of re-writing this class in other files,
+but to use import.
+
+'''
 
 import random
 from collections import defaultdict
 
+
+
 class atm():
 	# r = 2, k = 2
 
-	RULE_NUMBER = random.randint(100000000, 2147483647)
 
-	def __init__(self, ruleNumDec = RULE_NUMBER, d = 100): 
+	def __init__(self, ruleNumDec = 0, dim = 100): 
 		# rng is the range, d is size of map
+
+		if not ruleNumDec:
+			ruleNumDec = random.randint(0, 2147483647)
 
 		# get number of rule, in decimal
 		# ruleNumDec = input("Which rule do you want to use? (0 ~ 2147483647) ")
@@ -17,53 +30,53 @@ class atm():
 			print("out of range!")
 			ruleNumDec = input("Which rule do you want to use? (0~2147483648) ")
 
-		ruleNumBry = bin(int(ruleNumDec))[2:].zfill(31) # This is a string
-		self.ruleNumBry = ruleNumBry
-		# print(ruleNumBry)
+		self.ruleNumBry = bin(int(ruleNumDec))[2:].zfill(31) # This is a string
 
 		self.rule = defaultdict(int)
 		for i in range(31):
-			self.rule[bin(i)[2:].zfill(5)] = ruleNumBry[i]
+			self.rule[bin(i)[2:].zfill(5)] = self.ruleNumBry[i]
 			# print(i)
 
 		# setting up initial map
-		self.d = d # int(input("Range of the map: "))
-		self.a, self.b = [], [] # a, b are two maps
+		self.dim  = dim # int(input("Range of the map: "))
+		self.a, self.b = [], [] 
+		# a, b are two maps. a is intermediary, b is each printable row
 
-		for i in range(d): # initialize with 0, and 1 in the middle one box
+		for i in range(self.dim): # initialize with 0, and 1 in the middle one box
 			self.a.append("0") 
 			self.b.append("0")
-		self.a[d//2], self.b[d//2] = "1", "1"
+		self.a[self.dim//2], self.b[self.dim//2] = "1", "1"
 
-	def run(self):
+	def run(self, time = 50): # is to generate c, a printable 2-D list
+		# b is the 1-D map: each row to be printed
+		# c is the comprehensive 2-D map, with dimension time*d
+		
+		self.c = self.b.copy()
+		# copy the first row
 		# print the first round 
-		for i in range(self.d):
-			if self.b[i] == "1":
-				print("██", end = "")
-			else:
-				print("  ", end = "")
-
-		print()
 
 		# doing calculation and printing 
-		for count in range(30):
-			for i in range(self.d):
-				group = str(self.a[i-2]) + str(self.a[i-1]) + str(self.a[i]) + str(self.a[(i+1+self.d)%self.d]) + str(self.a[(i+2+self.d)%self.d])
+		for count in range(time):
+			for i in range(self.dim ):
+				group = str(self.a[i-2]) + str(self.a[i-1]) + str(self.a[i]) +\
+				str(self.a[(i+1+self.dim)%self.dim]) + str(self.a[(i+2+self.dim)%self.dim])
 				self.b[i] = self.rule[group]
-				if self.b[i] == "1":
-					print("██", end = "")
-				else:
-					print("  ", end = "")
 			self.a = self.b.copy()
-			print()
-			# input()
+			self.c.append(self.b)
 	
-	def response(self, re = True):
-		self.re = int(input('1: like, 0: dislike'))
-		return self.re
+	def show(self): # show the result of 
+		for i in self.c:
+			for j in i:
+				if j == '1':
+					print("██", end = "")
+				if j == '0':
+					print("  ", end = "")
+
+
 
 
 
 a1 = atm()
-a1.run()
+a1.run(3)
+a1.show()
 print(a1.ruleNumBry)

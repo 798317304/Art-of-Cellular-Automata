@@ -3,8 +3,6 @@ import numpy as np
 import random
 import json
 
-from keras.datasets import mnist
-# from keras.utils import np_utils
 from keras.models import Sequential
 from keras.layers import Dense, Activation, Dropout
 from keras.optimizers import RMSprop

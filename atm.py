@@ -9,12 +9,19 @@ but to use import.
 
 '''
 
+'''
+
+潜在的问题：range 31？ 这些数量对的上不？
+
+'''
+
+
 import random
 from collections import defaultdict
 
 
 
-class atm():
+class Atm():
 	# r = 2, k = 2
 
 
@@ -43,26 +50,36 @@ class atm():
 		# a, b are two maps. a is intermediary, b is each printable row
 
 		for i in range(self.dim): # initialize with 0, and 1 in the middle one box
-			self.a.append("0") 
 			self.b.append("0")
-		self.a[self.dim//2], self.b[self.dim//2] = "1", "1"
+			self.a.append("0")
+		self.b[self.dim//2], self.a[self.dim//2] = "1", "1"
+
 
 	def run(self, time = 50): # is to generate c, a printable 2-D list
 		# b is the 1-D map: each row to be printed
 		# c is the comprehensive 2-D map, with dimension time*d
-		
-		self.c = self.b.copy()
+		self.c = [[]]
+		for i in range(self.dim): # initialize with 0, and 1 in the middle one box
+			self.c[0].append("0")
+		self.c[0][self.dim//2] = "1"
+
+
 		# copy the first row
 		# print the first round 
 
 		# doing calculation and printing 
 		for count in range(time):
-			for i in range(self.dim ):
-				group = str(self.a[i-2]) + str(self.a[i-1]) + str(self.a[i]) +\
-				str(self.a[(i+1+self.dim)%self.dim]) + str(self.a[(i+2+self.dim)%self.dim])
+			for i in range(self.dim):
+
+				group = str(self.a[i-2]) +\
+				str(self.a[i-1]) +\
+				str(self.a[i]) +\
+				str(self.a[(i+1+self.dim)%self.dim])+\
+				str(self.a[(i+2+self.dim)%self.dim])
+
 				self.b[i] = self.rule[group]
 			self.a = self.b.copy()
-			self.c.append(self.b)
+			self.c.append(self.b.copy())
 	
 	def show(self): # show the result of 
 		for i in self.c:
@@ -71,12 +88,25 @@ class atm():
 					print("██", end = "")
 				if j == '0':
 					print("  ", end = "")
+			print()
+
+# 用来debug的
+# def smartPrint(a):
+# 		for j in a:
+# 			if j == '1':
+# 				print("██", end = "")
+# 			if j == '0':
+# 				print("  ", end = "")
+# 		print()
 
 
 
+# a1 = Atm()
+# # print(a1.a)
+# a1.run()
+# a1.show()
+
+# print('i'*100)
+# smartPrint(a1.c[0])
 
 
-a1 = atm()
-a1.run(3)
-a1.show()
-print(a1.ruleNumBry)

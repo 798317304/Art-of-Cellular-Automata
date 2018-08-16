@@ -1,6 +1,9 @@
 # CellularAutomata-NeuralNetwork
 ## Introduction
 Use neural network, based on user or CNN generated data, to determine whether one graph of CA will be liked. It is firstly an attempt to use NN to understand a chaos system, and secondly an attempt to simulate human aesthetics with algorithm.
+
+So why don't use CNN directly for aesthetic appreciation? Because I want to try to connect the seed of a CA to the effect its graph creates: is it possible for such a chaotic system? That's the question that interests me.
+
 ## Structure of project
 * ANN_Judge.py uses artificial neural network to judge whether one particular CA graph satisfies user's standard.
 * atm.py is 1D cellular automata with r = 2, k = 2.

@@ -1,2 +1,8 @@
 file_stack/
 *.DS_Store
+__pycache__/
+*.pyc
+__pycache__/Atm.cpython-36.pyc
+CNN_Generator_1.h5
+__pycache__/Atm.cpython-36.pyc
+*.pyc

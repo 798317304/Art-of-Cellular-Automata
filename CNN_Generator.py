@@ -54,6 +54,7 @@ from Atm import Atm
 
 # 训练以及保存模型
 # to load file
+
 with open(proj_path + '/CNN_Data/Data_1/100Graphs.json', 'r') as file:
 	Graphs = json.load(file)
 with open(proj_path + '/CNN_Data/Data_1/100Result.json', 'r') as file:

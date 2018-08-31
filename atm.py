@@ -2,8 +2,8 @@
 '''
 This edition of automata is supposed to be more OOP.
 Setup, reset, run, and attributes more clearly defined.
-in run a printable c is generated, but no printing conducted.
-print is another function
+In 'run' a printable c is generated, but no printing conducted.
+print is in the 'show' function
 The aim is to get rid of re-writing this class in other files,
 but to use import.
 
@@ -49,7 +49,7 @@ class Atm():
 		self.a, self.b = [], [] 
 		# a, b are two maps. a is intermediary, b is each printable row
 
-		for i in range(self.dim): # initialize with 0, and 1 in the middle one box
+		for i in range(self.dim): # initiali ze with 0, and 1 in the middle one box
 			self.b.append("0")
 			self.a.append("0")
 		self.b[self.dim//2], self.a[self.dim//2] = "1", "1"
@@ -62,7 +62,6 @@ class Atm():
 		for i in range(self.dim): # initialize with 0, and 1 in the middle one box
 			self.c[0].append("0")
 		self.c[0][self.dim//2] = "1"
-
 
 		# copy the first row
 		# print the first round 

@@ -1,4 +1,4 @@
-file_stack/
+file_stack (not sync)/
 *.DS_Store
 __pycache__/
 *.pyc

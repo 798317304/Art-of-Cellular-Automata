@@ -4,7 +4,6 @@
 # It seems that CNN_Generator is not an efficient nor a currently
 # viable way. So I would just use normal methods.
 
-import numpy as np
 import json
 
 from os import path
